@@ -9,6 +9,10 @@ const context = canvas.getContext("2d");
 canvas.height = wHeight;
 canvas.width = wWidth;
 const player = {} // this will be all thins "this player"
+let orbs = [] // this will be all the orbs in the game
+
+
+
 
 // put the modals into the variables so we can interact with them
 const loginModal = new bootstrap.Modal(document.querySelector('#loginModal'));
@@ -33,6 +37,7 @@ document.querySelector('.name-form').addEventListener('submit', (e)=>{
 document.querySelector('.start-game').addEventListener('click', (e)=>{
     // hide the start modal
     init()
+    console.log(orbs)
     spawnModal.hide();
     // show the hiddenOn start
     Array.from(document.querySelectorAll('.hiddenOnStart')).forEach((el)=>{
