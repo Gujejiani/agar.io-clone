@@ -1,10 +1,10 @@
 class Orb {
 
-    constructor(){
+    constructor(settings){
         this.color = this.getRandomColor();
-        this.locX = Math.floor(Math.random() * 500);
-        this.locY = Math.floor(Math.random() * 500);
-        this.radius = 5;    
+        this.locX = Math.floor(Math.random() * settings.worldWidth);
+        this.locY = Math.floor(Math.random() * settings.worldHeight);
+        this.radius = settings.defaultGenericOrbSize;    
     }
 
 
@@ -13,7 +13,7 @@ class Orb {
         const g = Math.floor(Math.random() * 200 + 50);
         const b = Math.floor(Math.random() * 200 + 50);
         return `rgb(${r},${g},${b})`;
-        
+
     }
 
 
