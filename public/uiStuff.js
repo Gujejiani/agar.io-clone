@@ -11,6 +11,7 @@ canvas.width = wWidth;
 const player = {} // this will be all thins "this player"
 let orbs = [] // this will be all the orbs in the game
 
+let players = [] // this will be all the players in the game
 
 
 
@@ -36,11 +37,12 @@ document.querySelector('.name-form').addEventListener('submit', (e)=>{
 
 document.querySelector('.start-game').addEventListener('click', (e)=>{
     // hide the start modal
-    init()
+  
     console.log(orbs)
     spawnModal.hide();
     // show the hiddenOn start
     Array.from(document.querySelectorAll('.hiddenOnStart')).forEach((el)=>{
         el.removeAttribute('hidden')
     })
+    init()
 })

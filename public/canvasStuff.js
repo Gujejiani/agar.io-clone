@@ -1,10 +1,7 @@
-const init = () => {
-console.log('am ready to draw')
-draw()
-}
 
-player.locX=  Math.floor(500 * Math.random() + 10); // horizontal axis
-player.locY = Math.floor(500 * Math.random() + 10); // vertical axis
+
+// player.locX=  Math.floor(500 * Math.random() + 10); // horizontal axis
+// player.locY = Math.floor(500 * Math.random() + 10); // vertical axis
 
 
 // ==============================
@@ -27,20 +24,28 @@ const draw = ()=>{
     // translate moves the canvas/context to where player is at
     context.translate(camX, camY)
 
-        // in UiStaff we have context.beginPath();
-        context.beginPath();
-        context.fillStyle = "rgb(255, 0, 0)";
-        context.arc(player.locX, player.locY, 10 , 0, 2 * Math.PI);
-        // context.arc(200,200, 10 , 0, 2 * Math.PI);
-        // arg1 and arg2 are center x and center of the arc
-        // arg3 = radius of the circle
-        // arg4 = where to start drawing in radians
-        // arg 5 = where to stop drawing in radians - pi = 90 degrees
-        context.fill()
-        context.lineWidth =3
-        context.strokeStyle = 'rgb(0, 255, 0)' // draw a green line
-        context.stroke()
-
+    // draw all the players
+        players.forEach((p)=>{
+            if(!p.playerData){
+                // if the player data doesn't exist
+                return
+            }
+            // in UiStaff we have context.beginPath();
+            context.beginPath();
+            context.fillStyle = p.playerData?.color ?? 'black';
+            context.arc(p.playerData.locX, p.playerData.locY, p.playerData.radius , 0, 2 * Math.PI);
+            // context.arc(200,200, 10 , 0, 2 * Math.PI);
+            // arg1 and arg2 are center x and center of the arc
+            // arg3 = radius of the circle
+            // arg4 = where to start drawing in radians
+            // arg 5 = where to stop drawing in radians - pi = 90 degrees
+            context.fill()
+            context.lineWidth =3
+            context.strokeStyle = 'rgb(0, 255, 0)' // draw a green line
+            context.stroke()
+        })
+        
+        // draw all the orbs
         orbs.forEach((orb)=>{
             context.beginPath();
             context.fillStyle = orb.color;
@@ -75,16 +80,7 @@ canvas.addEventListener('mousemove', (event)=>{
         yVector = (1 - ((angleDeg+90)/90));
     }
 
-    speed = 10
-    xV = xVector;
-    yV = yVector;
-
-    if((player.locX < 5 && xV < 0) || (player.locX > 500) && (xV > 0)){
-        player.locY -= speed * yV;
-    }else if((player.locY < 5 && yV > 0) || (player.locY > 500) && (yV < 0)){
-        player.locX += speed * xV;
-    }else{
-        player.locX += speed * xV;
-        player.locY -= speed * yV;
-    }    
+    
+    player.xVector = xVector   ? xVector : .1;
+    player.yVector = yVector ? yVector : .1;
 })
