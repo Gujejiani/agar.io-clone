@@ -17,8 +17,8 @@ const init = async () => {
     player.indexInPlayers = initData.indexInPlayers
     draw() // draw function is in canvasStuf
     }
-const socket = io.connect('http://localhost:9000');
-
+const socket = io.connect('https://agar-io-7gqw.onrender.com/');
+//const socket = io.connect('http://localhost:9000');
 // socket.on('initReturn', initData=>{
 //     console.log(initData)
 //     orbs = initData.orbs
